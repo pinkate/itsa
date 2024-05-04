@@ -1,5 +1,8 @@
 /*
-
+題目:
+  輸入n個學生各自的平時成績、期中成績、期末成績，判斷各個學生狀態為P:通過/M:補考/F:不通過。
+作法:
+  就按照題目給的條件寫if。
 */
 
 #include <iostream>
@@ -13,39 +16,25 @@ int main()
         for(int i=0; i<n; ++i){
             int usu, mid, fin;
             cin >> usu >> mid >> fin;
+            int sum = usu + mid + fin;
             if(usu>=60 && mid>=60 && fin>=60){
                 cout << "P\n";
                 continue;
             }
             else if(usu<60 && mid>=60 && fin>=60){
-                if(usu+mid+fin >= 220){
-                    cout << "P\n";
-                    continue;
-                }
-                else{
-                    cout << "M\n";
-                    continue;
-                }
+                if(sum >= 220) cout << "P\n";
+                else cout << "M\n";
+                continue;
             }
             else if(usu>=60 && mid<60 && fin>=60){
-                if(usu+mid+fin >= 220){
-                    cout << "P\n";
-                    continue;
-                }
-                else{
-                    cout << "M\n";
-                    continue;
-                }
+                if(sum >= 220) cout << "P\n";
+                else cout << "M\n";
+                continue;
             }
             else if(usu>=60 && mid>=60 && fin<60){
-                if(usu+mid+fin >= 220){
-                    cout << "P\n";
-                    continue;
-                }
-                else{
-                    cout << "M\n";
-                    continue;
-                }
+                if(sum >= 220) cout << "P\n";
+                else cout << "M\n";
+                continue;
             }
             else if(usu<60 && mid<60 && fin>=80){
                 cout << "M\n";
