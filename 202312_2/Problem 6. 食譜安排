@@ -1,0 +1,26 @@
+/*
+題目:
+  x個雞肉、y個牛肉、z個蔬食料理。蔬食料理不能在第一餐且不能連續兩餐。
+做法:
+  
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x, y, z;
+    while(cin >> x >> y >> z){
+        int up=1, down=1;
+        for(int i=1; i<=x+y; ++i){
+            up *= i;
+        }
+        for(int j=1; j<=x+y-z; ++j){
+            down *= j;
+        }
+        cout << up*(up/down) << endl;
+    }
+    return 0;
+}
