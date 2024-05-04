@@ -1,0 +1,68 @@
+/*
+
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int n;
+    while(cin >> n){
+        for(int i=0; i<n; ++i){
+            int usu, mid, fin;
+            cin >> usu >> mid >> fin;
+            if(usu>=60 && mid>=60 && fin>=60){
+                cout << "P\n";
+                continue;
+            }
+            else if(usu<60 && mid>=60 && fin>=60){
+                if(usu+mid+fin >= 220){
+                    cout << "P\n";
+                    continue;
+                }
+                else{
+                    cout << "M\n";
+                    continue;
+                }
+            }
+            else if(usu>=60 && mid<60 && fin>=60){
+                if(usu+mid+fin >= 220){
+                    cout << "P\n";
+                    continue;
+                }
+                else{
+                    cout << "M\n";
+                    continue;
+                }
+            }
+            else if(usu>=60 && mid>=60 && fin<60){
+                if(usu+mid+fin >= 220){
+                    cout << "P\n";
+                    continue;
+                }
+                else{
+                    cout << "M\n";
+                    continue;
+                }
+            }
+            else if(usu<60 && mid<60 && fin>=80){
+                cout << "M\n";
+                continue;
+            }
+            else if(usu>=80 && mid<60 && fin<60){
+                cout << "M\n";
+                continue;
+            }
+            else if(usu<60 && mid>=80 && fin<60){
+                cout << "M\n";
+                continue;
+            }
+            else{
+                cout << "F\n";
+            }
+        }
+    }
+    return 0;
+}
