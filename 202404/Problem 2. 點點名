@@ -1,0 +1,43 @@
+/*
+N筆測資，n個人，每第K個出來，找出最後剩下的人。
+做法:
+  初始一個陣列大小n為0。
+  設變數del記住目前淘汰多少人。
+  設變數cnt記當目前陣列為0時(人還在)加一。
+    若cnt剛好等於k時踢人(陣列設1)，++del，cnt=0。
+  設變數i走陣列，當i超過陣列大小時回去0從頭開始走。
+*/
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    int N;
+    cin >> N;
+    while(N--){
+        int n, k;
+        cin >> n >> k;
+        int pass[n];
+        memset(pass, 0, sizeof(pass));
+        int del = 1, cnt = 0, i = 0;
+        while(del < n){
+            if(pass[i] == 0) ++cnt;
+            if(cnt == k){
+                pass[i] = 1;
+                cnt = 0;
+                ++del;
+            }
+            ++i;
+            if(i > n-1) i=0;
+        }
+        for(int i=0; i<n; ++i){
+            if(pass[i] == 0){
+                cout << i+1 << endl;
+                break;
+            }
+        }
+    }
+    return 0;
+}
