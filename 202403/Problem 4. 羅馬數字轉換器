@@ -1,0 +1,33 @@
+/*
+題目:
+  整數轉羅馬數字。
+做法:
+  除了1, 5, 10, 50, 100, 500, 1000之外，有包含4, 9的數字(4, 9, 40, 90, 400, 900)要特別處理(表示方法不是用加的而是用減的)。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+string romaStr[]={"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+int romaInt[]={1,4,5,9,10,40,50,90,100,400,500,900,1000};
+
+int main(void){
+    int n;
+    cin >> n;
+    while(n--){
+        int num;
+        cin >> num;
+        string ans = "";
+        int i=12;
+        while(num>0){
+            if(romaInt[i]>num) --i;
+            else{
+                num -= romaInt[i];
+                ans += romaStr[i];
+            }
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
