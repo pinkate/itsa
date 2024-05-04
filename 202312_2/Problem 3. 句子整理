@@ -1,0 +1,71 @@
+/*
+題目:
+  整理句子。
+做法:
+  先調整順序，再判斷改動。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string subject[6] = {"I", "He", "She", "They", "Mary", "John"};
+	string verb[4] = {"love", "like", "see", "find"};
+	string object[6] = {"me", "him", "her", "them", "Mary", "John"};
+	int n;
+	cin >> n;
+	while(n--){
+        string a, b, c;
+        cin >> a >> b >> c;
+        for(int i=0; i<4; ++i){
+            if(a == verb[i]){
+                string tmp = a;
+                a = b; b = tmp;
+            }
+            if(c == verb[i]){
+                string tmp = c;
+                c = b; b = tmp;
+            }
+        }
+        for(int i=0; i<6; ++i){
+            if(a == object[i]){
+                string tmp = a;
+                a = c; c = tmp;
+            }
+            if(b == object[i]){
+                string tmp = b;
+                b = c; c = tmp;
+            }
+        }
+
+        if((a == subject[4] && c == object[5]) || (a == subject[5] && c == object[4])){
+            cout << a << " " << b << "s " << c << " or " << c << " " << b << "s " << a << endl;
+            continue;
+        }
+
+        cout << a << " ";
+        if(a == subject[1] || a == subject[2] || a == subject[4] || a == subject[5]){
+            cout << b << "s ";
+        }
+        else{
+            cout << b << " ";
+        }
+        int keep_a, keep_c;
+        for(int i=0; i<6; ++i){
+            if(a == subject[i]) keep_a = i;
+            if(c == object[i]) keep_c = i;
+        }
+        if(keep_a == keep_c){
+            if(keep_a == 0) cout << "myself\n";
+            else if(keep_a == 1 || keep_a == 5) cout << "himself\n";
+            else if(keep_a == 2 || keep_a == 4) cout << "herself\n";
+            else cout << "themselves\n";
+        }
+        else{
+            cout << c << endl;
+        }
+	}
+    return 0;
+}
