@@ -1,0 +1,23 @@
+/*
+大數相加，有夠麻煩還一直出。
+下次直接用JAVA啦。
+*/
+
+import java.util.Scanner;
+import java.math.*;
+
+public class Main {
+	public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in);
+		int n = input.nextInt();
+		while(n > 0){
+			String a = input.next();
+			String b = input.next();
+			BigInteger A = new BigInteger(a);
+			BigInteger B = new BigInteger(b);
+			System.out.println(A.add(B));
+			n--;
+		}
+		input.close();
+	}
+}
