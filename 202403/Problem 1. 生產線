@@ -1,0 +1,30 @@
+/*
+題目:
+  輸入n筆訂單，開始時間s，完成時間d，最少要動用多少機台才能完成今天的訂單。
+做法:
+  設定一個大小為24的陣列ans，把每一筆訂單開始時間到完成時間標記上(加一)，找出重複最大的數字就是答案。
+*/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main(void){
+    int n;
+    cin >> n;
+    int ans[24];
+    memset(ans, 0, sizeof(ans));
+    while(n--){
+        int s, d;
+        cin >> s >> d;
+        for(int i=s; i<d; ++i){
+            ++ans[i];
+        }
+    }
+    int big=0;
+    for(int i=0; i<24; ++i){
+        if(ans[i]>big) big = ans[i];
+    }
+    cout << big << endl;
+}
