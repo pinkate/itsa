@@ -1,0 +1,44 @@
+/*
+題目:
+  假設一個編碼字典為"ABCDEFGHIJKLMNOPQRSTUVWXYZ "，根據第一個輸入為 +/-數字 判斷每個字母移動幾個位置，並輸出，輸入可能會有空格。
+做法:
+  用 while(cin >> str) 就算有空格也可以把後面繼續吃進來，用 if(!first) 處裡沒有吃進來的空格，若沒有在最後加上 cout << endl; 就會全錯^^。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+string dic = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+
+int main()
+{
+    char sign;
+    int x;
+    cin >> sign >> x;
+    if(sign == '-') x *= -1;
+    int first = 1;
+    string str;
+    while(cin >> str){
+        char cha;
+        int idx;
+        if(!first){
+            idx = (26 + x);
+            if(idx > 26) idx -= 27;
+            if(idx < 0 ) idx += 27;
+            cha = dic[idx];
+            cout << cha;
+
+        }
+        for(int i=0; i<str.length(); ++i){
+            idx = (str[i] - 'A' + x);
+            if(idx > 26) idx -= 27;
+            if(idx < 0 ) idx += 27;
+            cha = dic[idx];
+            cout << cha;
+        }
+        first = 0;
+    }
+    cout << endl;
+    return 0;
+}
