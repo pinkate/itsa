@@ -1,0 +1,27 @@
+/*
+題目:
+  輸入N個測資，x本金，r利息，n年，算出n年後連本帶息資產為多少。
+做法:
+  麻煩在於輸入輸出，用到 long double->LF 以及 (long long int)，不只是本金x要用到long double，利息也要才會正確。
+*/
+
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+
+int main(void){
+    int N;
+    cin >> N;
+    while(N--){
+        long double x, r;
+        int n;
+        scanf("%Lf,%Lf,%d", &x, &r, &n);
+        r = (r * 0.01) + 1;
+        while(n--){
+            x *= r;
+        }
+        printf("%lld\n", (long long int)x);
+    }
+    return 0;
+}
