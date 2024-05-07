@@ -1,0 +1,53 @@
+/*
+題目:
+  輸入n個測資，d個國土範圍(dxd)，s表示飛彈來襲方向:
+    s=1 '*'要從右上到左下
+    s=2 '*'要從左上要右下
+    s=3 '*'要在右邊
+    s=4 '*'要在左邊
+做法:
+  注意輸出格式，不能多空格。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while(n--){
+        int d, s;
+        cin >> d >> s;
+        int rem_1 = d-1, rem_2 = 0;
+        for(int i=0; i<d; ++i){
+            for(int j=0; j<d; ++j){
+                if(s == 1){
+                    if(j == rem_1){
+                        cout << "*";
+                        --rem_1;
+                    }
+                    else cout << "x";
+                }
+                else if(s == 2){
+                    if(j == rem_2) cout << "*";
+                    else cout << "x";
+                }
+                else if(s == 3){
+                    if(j == d-1) cout << "*";
+                    else cout << "x";
+                }
+                else{
+                    if(j == 0) cout << "*";
+                    else cout << "x";
+                }
+
+                if(j != d-1) cout << " ";
+                else cout << endl;
+            }
+            ++rem_2;
+        }
+    }
+    return 0;
+}
