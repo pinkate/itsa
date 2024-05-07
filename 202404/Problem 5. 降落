@@ -1,0 +1,37 @@
+/*
+題目:
+  九天玄女從高空降落(300~2000英尺)，每次可降落100/200英尺，共有幾種不同的降落方式呢?
+做法:
+  跟沙包題目屬同一掛，用i表示200最多可有幾個，j表示當i又幾個時100最多有幾個。
+  再用C幾取幾的方式找出不同的組合方式，到i不小於0為止全部加總起來。
+  跟沙包不同在於i跟j初始值的處理，但異曲同工啦。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int combination(int a, int b){
+    int result = 1;
+    for(int i=a+1; i<=a+b; ++i){
+        result *= i;
+    }
+    for(int i=1; i<=b; ++i){
+        result /= i;
+    }
+    return result;
+}
+
+int main()
+{
+    int n;
+    while(cin >> n){
+        int ans = 0;
+        for(int i=n/200, j=(n%200)/100; i>=0; i-=1, j+=2){
+            if(i>=j) ans += combination(i, j);
+            else ans += combination(j, i);
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
