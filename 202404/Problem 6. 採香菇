@@ -1,0 +1,36 @@
+/*
+題目:
+  第一行輸入n跟m，n表示接下來輸入nxn的矩陣，m表示接下來輸入x1, y1, x2, y2表示收取的香菇範圍。
+做法:
+  把數量加總起來就好。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, m;
+    while(cin >> n >> m){
+        int matrix[n][n];
+        for(int i=0; i<n; ++i){
+            for(int j=0; j<n; ++j){
+                cin >> matrix[i][j];
+            }
+        }
+        int x1, y1, x2, y2;
+        while(m--){
+            cin >> x1 >> y1 >> x2 >> y2;
+            int ans = 0;
+            for(int i=x1-1; i<x2; ++i){
+                for(int j=y1-1; j<y2; ++j){
+                    ans += matrix[i][j];
+                }
+            }
+            cout << ans << endl;
+        }
+
+    }
+    return 0;
+}
