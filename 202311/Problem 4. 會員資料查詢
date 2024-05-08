@@ -1,0 +1,31 @@
+/*
+題目:
+  輸入n個查詢資料，輸出對應的全部資料。
+做法:
+  就醬。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string id[] = {"123", "456", "789", "321", "654"};
+    string name[] = {"Tom", "Cat", "Nana", "Lim", "Won"};
+    string category[] = {"DTGD", "CSIE", "ASIE", "DBA", "FDD"};
+
+    int n;
+    cin >> n;
+    while(n--){
+        int type;
+        string str;
+        cin >> type >> str;
+        for(int i=0; i<5; ++i){
+            if(type == 1 && str == id[i]) cout << id[i] << " " << name[i] << " " << category[i] << endl;
+            if(type == 2 && str == name[i]) cout << id[i] << " " << name[i] << " " << category[i] << endl;
+            if(type == 3 && str == category[i]) cout << id[i] << " " << name[i] << " " << category[i] << endl;
+        }
+    }
+    return 0;
+}
