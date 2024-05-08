@@ -1,0 +1,48 @@
+/*
+題目:
+  有五張牌請判斷是否為連續及是否為同花色。
+做法:
+  因為題目大小寫都接受，所以我用#include <ctype.h>的isalpha跟tolower來處理。
+*/
+
+#include <iostream>
+#include <ctype.h>
+
+using namespace std;
+
+char numbersName[] = "23456789tjqka";
+char suitName[] = "cdhs";
+int numbers[13] = {0};
+int suits[4] = {0};
+int isSameSuit = 0, isCotinuity = 0, rem_i = 100;
+
+void process(string card){
+    if(isalpha(card[0])) card[0] = tolower(card[0]);
+    for(int i=0; i<13; ++i){
+        if(card[0] == numbersName[i]){
+            numbers[i] = 1;
+            if(rem_i>i) rem_i = i;
+        }
+    }
+    if(isalpha(card[1])) card[1] = tolower(card[1]);
+    for(int i=0; i<4; ++i){
+        if(card[1] == suitName[i]) suits[i]++;
+        if(suits[i] == 5) isSameSuit = 1;
+    }
+}
+
+int main()
+{
+    string card;
+    for(int i=0; i<5; ++i){
+        cin >> card;
+        process(card);
+    }
+    if(numbers[rem_i] == 1 && numbers[rem_i+1] == 1 && numbers[rem_i+2] == 1 && numbers[rem_i+3] == 1 && numbers[rem_i+4] == 1) isCotinuity = 1;
+
+    if(isCotinuity && !isSameSuit) cout << "y" << endl;
+    else if(isCotinuity && isSameSuit) cout << "ys" << endl;
+    else if(!isCotinuity && !isSameSuit) cout << "n" << endl;
+    else cout << "s" << endl;
+    return 0;
+}
