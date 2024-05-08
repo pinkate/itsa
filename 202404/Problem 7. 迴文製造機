@@ -1,0 +1,32 @@
+/*
+題目:
+  輸入字串，若輸入"moon"則可湊成"m" "n" "o" "omo" "ono"種迴文，輸出最多可拿出幾張字母卡。
+做法:
+  if(keep == 0 && (rem[i] == 1 || rem[i]/2 >= 1)) keep = 1; keep=1用來記若有發生只出現一次的字母或出現超過一次且不為偶數的字母，不能重複記所以用同一變數。
+  舉例: "mmmoo" -> "momom"... / "dmmoo" -> "modom"... / "mmmood" -> "modom" or "momom"...
+  ans += (rem[i]/2)*2; 累加出現超過一次的，作為迴文出現的字母卡數。
+*/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    string input;
+    while(cin >> input){
+        long long int rem[26];
+        memset(rem, 0, sizeof(rem));
+        for(size_t i=0; i<input.length(); ++i){
+            ++rem[input[i] - 'a'];
+        }
+        int ans = 0, keep = 0;
+        for(int i=0; i<26; ++i){
+            if(keep == 0 && (rem[i] == 1 || rem[i]/2 >= 1)) keep = 1;
+            ans += (rem[i]/2)*2;
+        }
+        cout << ans+keep << endl;
+    }
+    return 0;
+}
