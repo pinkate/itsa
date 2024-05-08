@@ -1,0 +1,54 @@
+/*
+題目:
+  輸入m個側資，將十進制轉二進制後計算有幾個1。
+做法:
+  輸入只有負數前面會有字符'-'正數沒有，有夠麻煩，所以我用rem=0記為正數，rem=1記為負數(方便計算)。
+*/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    int m;
+    cin >> m;
+    while(m--){
+        string str;
+        cin >> str;
+        int bits[32];
+        int n=0, rem;
+        if(str[0] == '-') rem = 1;
+        else rem = 0;
+        int tens = str.length()-rem, base = 1;
+        while(--tens){
+            base *= 10;
+        }
+        for(size_t i=0+rem; i<str.length(); ++i){
+            n += (str[i] - '0')*base;
+            base /= 10;
+        }
+        memset(bits, 0, sizeof(bits));
+        for(int i=0; i<32 && n>0; n/=2, ++i){
+            bits[i] = n%2;
+        }
+        if(rem == 1){
+            int carry = 1;
+            for(int i=0; i<32; ++i){
+                bits[i] = (bits[i]+carry)%2;
+                carry = (bits[i]+carry)/2;
+            }
+            for(int i=0; i<32; ++i){
+                if(bits[i] == 0) bits[i] = 1;
+                else bits[i] = 0;
+            }
+        }
+        int ans = 0;
+        for(int i=0; i<32; ++i){
+            if(bits[i] == 1) ++ans;
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
