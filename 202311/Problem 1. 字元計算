@@ -1,0 +1,33 @@
+/*
+題目:
+  輸入n個字母，計算各字母出現次數，有出現過的在輸出字母跟出現次數。
+做法:
+  就...醬。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    char alpha[] = "abcdefghijklmnopqrstuvwxyz";
+    int n;
+    int num[26] = {0};
+    while(cin >> n){
+        for(int i=0; i<n; ++i){
+            char input;
+            cin >> input;
+            for(size_t j=0; j<sizeof(alpha); ++j){
+                if(input == alpha[j]){
+                    ++num[input-'a'];
+                    break;
+                }
+            }
+        }
+        for(int i=0; i<26; ++i){
+            if(num[i] != 0) cout << alpha[i] << " " << num[i] << endl;
+        }
+    }
+    return 0;
+}
