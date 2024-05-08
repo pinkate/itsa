@@ -1,0 +1,26 @@
+/*
+題目:
+  輸入n表示蓄水池滿水單位，r表示和尚每次可填入的水量，d表示和尚打水期間蓄水池漏水單位，求和尚要花多久才能裝滿蓄水池。
+做法:
+  就醬。
+*/
+
+#include <iostream>  
+  
+using namespace std;  
+  
+int main()  
+{  
+    double n, r, d;  
+    while(cin >> n >> r >> d){  
+        int time = 0;  
+        while(n > 0){  
+            ++time;  
+            n -= r;  
+            if(n <= 0) break;  
+            n += d;  
+        }  
+        cout << time << endl;  
+    }  
+    return 0;  
+}  
