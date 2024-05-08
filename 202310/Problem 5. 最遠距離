@@ -1,0 +1,35 @@
+/*
+題目:
+  輸入n個側資，每次從m格座標中找出最遠距離。
+做法:
+  就每兩個點算距離然後找最大。
+*/
+
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+    int n, m;
+    cin >> n;
+    while(n--){
+        cin >> m;
+        int x[20] = {0};
+        int y[20] = {0};
+        for(int i=0; i<m; ++i){
+            cin >> x[i] >> y[i];
+        }
+        int dis=0;
+        for(int i=0; i<m; ++i){
+            for(int j=i+1; j<m; ++j){
+                if( dis <= pow(x[i]-x[j], 2)+pow(y[i]-y[j], 2) ){
+                    dis = pow(x[i]-x[j], 2)+pow(y[i]-y[j], 2);
+                }
+            }
+        }
+        cout << dis << endl;
+    }
+    return 0;
+}
