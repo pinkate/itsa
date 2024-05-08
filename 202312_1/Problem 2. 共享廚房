@@ -1,0 +1,28 @@
+/*
+題目:
+  跟生產線同一掛，一模一樣。
+*/
+
+#include <iostream>  
+#include <cstring>  
+  
+using namespace std;  
+  
+int main(void){  
+    int n;  
+    cin >> n;  
+    int ans[24];  
+    memset(ans, 0, sizeof(ans));  
+    while(n--){  
+        int s, d;  
+        cin >> s >> d;  
+        for(int i=s; i<d; ++i){  
+            ++ans[i];  
+        }  
+    }  
+    int big=0;  
+    for(int i=0; i<24; ++i){  
+        if(ans[i]>big) big = ans[i];  
+    }  
+    cout << big << endl;  
+}  
