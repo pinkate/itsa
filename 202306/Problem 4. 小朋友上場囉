@@ -1,0 +1,28 @@
+/*
+題目:
+  跟202312_2 Problem 6.食譜安排一樣。
+做法:
+  再加上測資個數n就好。
+*/
+
+#include <iostream>  
+  
+using namespace std;  
+  
+int main()  
+{  
+    int n, x, y, z;  
+    cin >> n;  
+    while(n--){  
+        cin >> x >> y >> z;  
+        int up=1, down=1;  
+        for(int i=1; i<=x+y; ++i){  
+            up *= i;  
+        }  
+        for(int j=1; j<=x+y-z; ++j){  
+            down *= j;  
+        }  
+        cout << up*(up/down) << endl;  
+    }  
+    return 0;  
+}
