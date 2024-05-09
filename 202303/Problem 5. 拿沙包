@@ -1,0 +1,37 @@
+/*
+題目:
+  跟202305 Problem 4.彈珠完全一樣。
+做法:
+  嗯。
+*/
+
+#include <iostream>  
+  
+using namespace std;  
+  
+int combination(int a, int b){  
+    int result = 1;  
+    for(int i=a+1; i<=a+b; ++i){  
+        result *= i;  
+    }  
+    for(int i=1; i<=b; ++i){  
+        result /= i;  
+    }  
+    return result;  
+}  
+  
+int main()  
+{  
+    int N, n; 
+    cin >> N;  
+    while(N--){ 
+        cin >> n;  
+        int ans = 0;  
+        for(int i=n/2, j=n%2; i>=0; i-=1, j+=2){  
+            if(i>=j) ans += combination(i, j);  
+            else ans += combination(j, i);  
+        }  
+        cout << ans << endl;  
+    }  
+    return 0;  
+}  
