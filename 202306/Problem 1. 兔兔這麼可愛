@@ -1,0 +1,31 @@
+/*
+題目:
+  輸入a個測資，n隻兔子，經過m個月。每隻兔子可存活三個月，每個月一對兔子能生育三隻兔子，生完兔子後即會死亡。求經過m個月後草原中兔子的數量。
+做法:
+  設array分別更新活第幾個月的兔子的數量，新生兔子數量記為tmp。
+  每過一個月就計算新生兔子並更新。
+*/
+
+#include <stdlib.h>  
+#include <stdio.h>   
+  
+int main()  
+{  
+    int a, n, m;  
+    scanf("%d", &a);  
+    while(a--){  
+        scanf("%d %d", &n, &m);  
+        long long month[3] = {0}, tmp;  
+          
+        month[0] = n;  
+        for(int i=0; i<m; ++i){  
+            tmp = (month[0]+month[1]+month[2])/2*3;  
+            month[2] = month[1];  
+            month[1] = month[0];  
+            month[0] = tmp;  
+        }  
+          
+        printf("%lld\n", month[0]+month[1]+month[2]);  
+    }  
+    return 0;  
+}
