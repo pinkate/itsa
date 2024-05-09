@@ -1,0 +1,29 @@
+/*
+題目:
+  輸入n個測資，sec停車時間(s)，保底停車費為70，超過1500(s)後每500(s)加收5塊。
+做法:
+  就醬。
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while(n--){
+        int sec, price=70;
+        cin >> sec;
+        if(sec>1500){
+            sec -= 1500;
+            while(sec > 0){
+                sec -= 500;
+                price += 5;
+            }
+        }
+        cout << price << endl;
+    }
+    return 0;
+}
