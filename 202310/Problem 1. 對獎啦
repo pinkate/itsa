@@ -1,0 +1,62 @@
+/*
+題目:
+  發票對獎概念。
+做法:
+  ...考驗細心的題目。
+*/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int cnt[7];
+long int sum = 0;
+int money[6] = {200000, 40000, 10000, 4000, 1000, 200};
+int c = 0;
+int maxMoney = 0;
+
+void check(string cmp, string test){
+    for(int j=7; j>=0; --j){
+        if(cmp[j] == test[j]) c++;
+        else{
+            break;
+        }
+    }
+    for(int j=8; j>=3; --j){
+        if(c == j && money[8-j] > maxMoney) maxMoney = money[8-j];
+    }
+    c = 0;
+}
+
+int main() {
+    string ss, s1, s2, s3;
+    cin >> ss >> s1 >> s2 >> s3;
+    memset(cnt, 0,  sizeof(cnt));
+    int n;
+    cin >> n;
+    for(int i=0; i<n; ++i){
+        string num;
+        cin >> num;
+        if(num == ss){
+            sum += 2000000;
+            cnt[0]++;
+            continue;
+        }
+        for(int b=0; b<3; b++){
+            if(b == 0) check(s1, num);
+            else if(b == 1) check(s2, num);
+            else if(b == 2) check(s3, num);
+        }
+        for(int j=0; j<7; ++j){
+            if(maxMoney == money[j]) cnt[j+1]++;
+        }
+        sum += maxMoney;
+        maxMoney = 0;
+    }
+    for(int i=0; i<7; ++i){
+        if(i != 6)  cout << cnt[i] << " ";
+        else cout << cnt[i] << endl;
+    }
+    cout << sum << endl;
+}
