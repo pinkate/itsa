@@ -6,26 +6,27 @@
   每過一個月就計算新生兔子並更新。
 */
 
-#include <stdlib.h>  
-#include <stdio.h>   
-  
-int main()  
-{  
-    int a, n, m;  
-    scanf("%d", &a);  
-    while(a--){  
-        scanf("%d %d", &n, &m);  
-        long long month[3] = {0}, tmp;  
-          
-        month[0] = n;  
-        for(int i=0; i<m; ++i){  
-            tmp = (month[0]+month[1]+month[2])/2*3;  
-            month[2] = month[1];  
-            month[1] = month[0];  
-            month[0] = tmp;  
-        }  
-          
-        printf("%lld\n", month[0]+month[1]+month[2]);  
-    }  
-    return 0;  
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a, n, m;
+    cin >> a;
+    while(a--){
+        cin >> n >> m;
+        long long int month[3] = {0, 0, 0}, tmp;
+
+        month[0] = n;
+        for(int i=0; i<m; ++i){
+            tmp = (month[0]+month[1]+month[2])/2*3;
+            month[2] = month[1];
+            month[1] = month[0];
+            month[0] = tmp;
+        }
+
+        cout << month[0]+month[1]+month[2] << endl;
+    }
+    return 0;
 }
