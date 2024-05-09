@@ -1,0 +1,48 @@
+/*
+題目:
+  輸入座標直到(-1, -1)為止，然後輸入籃框的位置，找出最近的位置及為最佳攻擊點，可能不只一個，按照小到大輸出。
+做法:
+  就醬。
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cmath>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+    int x[100+5], y[100+5];
+    memset(x, 0, sizeof(x));
+    memset(y, 0, sizeof(y));
+    int i=0;
+    while(cin >> x[i] >> y[i]){
+        if(x[i] == -1 && y[i] == -1) break;
+        ++i;
+    }
+    int goalX, goalY;
+    cin >> goalX >> goalY;
+
+    for(int j=0; j<i; ++j){
+        for(int k=j+1; k<=i; ++k){
+            if(x[j]>x[k] || (x[j] == x[k] && y[j]>=y[k])){
+                swap(x[j], x[k]);
+                swap(y[j], y[k]);
+            }
+        }
+    }
+    int min_dis = 10000000;
+    for(int j=0; j<=i; ++j){
+        if(min_dis > (pow(x[j]-goalX, 2)+pow(y[j]-goalY, 2))){
+            min_dis = (pow(x[j]-goalX, 2)+pow(y[j]-goalY, 2));
+        }
+    }
+    for(int j=0; j<=i; ++j){
+        if(min_dis == (pow(x[j]-goalX, 2)+pow(y[j]-goalY, 2))){
+            cout << x[j] << " " << y[j] << endl;
+        }
+    }
+    return 0;
+}
