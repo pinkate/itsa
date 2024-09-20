@@ -4,8 +4,7 @@
 做法:
   視x跟y為一體，用w代稱。
     先排w!。
-    有w個空位給z，所以w個空位中選z個，Cw取z。
-    再排z!。
+    有w個空位給z，所以w個空位中選z個，Pw取z。
 */
 
 #include <iostream>
